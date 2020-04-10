@@ -1,5 +1,5 @@
 <template>
-  <div id="main-tab-bar">
+  <div id="reg-tab-bar">
     <div class="tab-bar wrap">
       <tab-bar-left class="tab-bar-left">
 
@@ -28,11 +28,8 @@
       </tab-bar-left>
       <tab-bar-right class="tab-bar-right">
 
-        <tab-bar-item path="/register" activeColor="#fabe00">
-          <div slot="item-text">登录</div>
-        </tab-bar-item>
-        <tab-bar-item path="/login" activeColor="#fabe00">
-          <div slot="item-text">注册</div>
+        <tab-bar-item>
+          <div slot="item-text" class="reg-title">欢迎注册</div>
         </tab-bar-item>
         
       </tab-bar-right>
@@ -46,7 +43,7 @@
   import TabBarItem from 'components/common/tabbar/TabBarItem.vue'
 
   export default {
-    name: "MainTabBar",
+    name: "loginTabBar",
     components: {
       TabBarLeft,
       TabBarRight,
@@ -56,7 +53,7 @@
 </script>
 
 <style scoped>
-  #main-tab-bar {
+  #reg-tab-bar {
     height: 58px;
     width: 100%;
     background-color: #1b2b3b;
@@ -71,5 +68,9 @@
     background-color: #1b2b3b;
     position: relative;
     display: flex;
+  }
+  .reg-title {
+    color: #fabe00 !important;
+    font-size: 20px;
   }
 </style>

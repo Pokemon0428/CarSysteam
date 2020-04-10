@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-bar-item">
+  <div class="tab-bar-item" @click="itemClick">
     <div :style="activeStyle"><slot name="item-text"></slot></div>
   </div>
 </template>
@@ -20,6 +20,11 @@
       },
       activeStyle(){
         return this.isActive ? {} : {color: this.activeColor}
+      }
+    },
+    methods: {
+      itemClick(){
+        this.$router.push(this.path)
       }
     },
   }
