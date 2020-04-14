@@ -5,13 +5,13 @@
         <div class="text">登录</div>
         <div class="login-info">
           <ul class="login-info-ul">
-            <li>
+            <li class="input-text">
               <label for="normal-id">
                 <span class="icon-user"></span>
               </label>
               <input type="text" class="user-name" id="normal-id" value="" placeholder="请输入手机号/证件号">
             </li>
-            <li>
+            <li class="input-text">
               <label for="normal-password">
                 <span class="icon-password"></span>
               </label>
@@ -26,7 +26,7 @@
             <li>
               <div class="reg">
                 还没有注册？
-                <a href="">立即注册</a>
+                <a @click="regClick" class="toReg">立即注册</a>
               </div>
             </li>
           </ul>
@@ -39,7 +39,11 @@
 <script>
   export default {
     name: "LoginContent",
-    
+    methods: {
+      regClick() {
+        this.$router.push('/register')
+      }
+    },
   }
 </script>
 
@@ -147,7 +151,10 @@
   .reg a {
     color: #6ab0ff;
   }
-  li:focus-within{
+  .input-text:focus-within{
     border: 1px solid #fabe00;
+  }
+  .toReg {
+    cursor: pointer;
   }
 </style>

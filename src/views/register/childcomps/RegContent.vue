@@ -143,6 +143,14 @@
         if (!agree.checked) {
           this.$toast.show("请阅读并同意《xxxx用户服务条款》内容")
         }
+        this.makeSure()
+      },
+      makeSure() {
+        if (this.isShowPhone || this.isShowCode || this.isShowPsw || this.isShowPswCheck) {
+          this.$toast.show("注册信息有误，请重新填写")
+        } else {
+          this.$router.push('/home')
+        }
       }
     },
   }
