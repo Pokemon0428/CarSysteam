@@ -1,5 +1,5 @@
 <template>
-  <div id="auto-tab-bar">
+  <div id="self-tab-bar">
     <div class="tab-bar wrap">
       <tab-bar-left class="tab-bar-left">
 
@@ -46,7 +46,7 @@
   import TabBarItem from 'components/common/tabbar/TabBarItem.vue'
 
   export default {
-    name: "AutoTabBar",
+    name: "selfTabBar",
     components: {
       TabBarLeft,
       TabBarRight,
@@ -56,7 +56,7 @@
 </script>
 
 <style scoped>
-  #auto-tab-bar {
+  #self-tab-bar {
     height: 58px;
     width: 100%;
     background-color: #1b2b3b;
