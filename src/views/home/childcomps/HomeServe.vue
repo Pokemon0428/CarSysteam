@@ -6,25 +6,25 @@
           <h2>短租自驾</h2>
           <div class="dz"></div>
           <p>24小时轻松取车/还车</p>
-          <a href="#">我要租车</a>
+          <a @click="shortClick">我要租车</a>
         </li>
         <li>
           <h2>长租服务</h2>
           <div class="cz"></div>
           <p>长租一次告别常租</p>
-          <a href="#">我要租车</a>
+          <a @click="langClick">我要租车</a>
         </li>
         <li>
           <h2>企业租车</h2>
           <div class="qy"></div>
           <p>企业出行一步搞定</p>
-          <a href="#">我要租车</a>
+          <a @click="companyClick">我要租车</a>
         </li>
         <li>
           <h2>顺风车站</h2>
           <div class="sf"></div>
           <p>价格便宜就是任性</p>
-          <a href="#">我要租车</a>
+          <a @click="hitchClick">我要租车</a>
         </li>
       </ul>
     </div>
@@ -33,7 +33,21 @@
 
 <script>
   export default {
-    name: "HomeServe"
+    name: "HomeServe",
+    methods: {
+      shortClick() {
+        this.$router.push('/automatic')
+      },
+      langClick() {
+        this.$router.push('/long')
+      },
+      companyClick() {
+        this.$router.push('/company')
+      },
+      hitchClick() {
+        this.$router.push('/hitch')
+      }
+    },
   }
 </script>
 
@@ -108,5 +122,8 @@
     border-radius: 3px;
     border: 1px solid #e4e6e9;
     background-color: #fafbfc;
+  }
+  a {
+    cursor: pointer;
   }
 </style>
