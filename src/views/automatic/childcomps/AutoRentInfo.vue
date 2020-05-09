@@ -6,7 +6,9 @@
           <p>选车记录</p>
         </div>
         <div class="rent-info-content">
-          <p>您还没有选车记录</p>
+          <div v-for='item in newOrder' v-show='newOrder.length != 0'>
+            <p>{{item.carId}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -14,8 +16,40 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
-    name:"AutoRentInfo"
+    name:"AutoRentInfo",
+    data() {
+      return {
+        orderData: {},
+        newOrder: []
+      }
+    },
+    activated() {
+      this.showOrder()
+    },
+    computed: {
+      ...mapGetters({
+        userNow: 'userNow'
+      }),
+    },
+    mounted() {
+      this.$axios.get('/api/orderinfo',{}).then(response => {
+        console.log(response)
+        console.log('00000000')
+        this.orderData = response
+      })
+    },
+    methods: {
+      showOrder() {
+        for (let i=0; i<this.orderData.data.length; i++) {
+          if (this.orderData.data[i].phone == this.userNow.sqlUserPhone) {
+            this.newOrder.push(this.orderData.data[i])
+          }
+        }
+      }
+    },
   }
 </script>
 
@@ -47,13 +81,15 @@
     border-bottom: 1px solid #e9ebee;
   }
   .rent-info-content {
+    height: 250px;
     text-align: center;
     position: relative;
     font-size: 14px;
     color: #60606c;
+    display: flex;
+    justify-content: space-around;
   }
   .rent-info-content p {
-   padding: 135px 0;
-  
+    text-align: center;
   }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div id="company">
-    <company-tab-bar></company-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <P>企业租车</P>
   </div>
 </template>
 
 <script>
-  import CompanyTabBar from './childcomps/CompanyTabBar'
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
 
   export default {
     name: "Company",
     components: {
-      CompanyTabBar,
+      MainTabBar,
     }
   }
 </script>

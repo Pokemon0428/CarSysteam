@@ -1,6 +1,6 @@
 <template>
   <div id="byyourself">
-    <self-tab-bar></self-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <self-search></self-search>
     <car-select></car-select>
     <self-rent-info></self-rent-info>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import SelfTabBar from './childcomps/SelfTabBar'
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
   import SelfSearch from './childcomps/SelfSearch'
   import SelfRentInfo from './childcomps/SelfRentInfo'
 
@@ -19,7 +19,7 @@
   export default {
     name: "ByYourSelf",
     components: {
-      SelfTabBar,
+      MainTabBar,
       SelfSearch,
       CarSelect,
       SelfRentInfo,

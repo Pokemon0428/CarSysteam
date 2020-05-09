@@ -1,7 +1,7 @@
 <template>
   <div id="register">
     <reg-tab-bar></reg-tab-bar>
-    <reg-content></reg-content>
+    <reg-content @addUserInfo="addUserInfo"></reg-content>
     <feature-views></feature-views>
     <fast-into></fast-into>
   </div>
@@ -14,6 +14,8 @@
   import FeatureViews from 'components/content/featureviews/FeatureViews'
   import FastInto from 'components/content/fastinto/FastInto'
 
+  import { mapActions } from 'vuex'
+
   export default {
     name: "Register",
     components: {
@@ -21,7 +23,15 @@
       RegContent,
       FastInto,
       FeatureViews
-    }
+    },
+    methods: {
+      ...mapActions(['addUser']),
+      addUserInfo(product) {
+        this.addUser(product).then(res => {
+          this.$toast.show(res, 1500)
+        })
+      }
+    },
   }
 </script>
 

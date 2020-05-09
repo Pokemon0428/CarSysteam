@@ -11,6 +11,7 @@ const Hitch = () => import('../views/hitch/Hitch')
 const Activity = () => import('../views/activity/Activity')
 const Register = () => import('../views/register/Register')
 const Login = () => import('../views/login/Login')
+const Manage = () => import('../views/manage/Manage')
 
 Vue.use(VueRouter)
 
@@ -55,8 +56,12 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/manage',
+    component: Manage
   }
-
+  
 ]
 
 const router = new VueRouter({

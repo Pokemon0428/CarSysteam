@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <home-tab-bar></home-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <home-swiper :swiper-images='swiperImages'></home-swiper>
     <feature-views></feature-views>
     <home-serve :serve-image="serveImage"></home-serve>
@@ -14,8 +14,8 @@
   import HomeSwiper from './childcomps/HomeSwiper'
   import HomeServe from './childcomps/HomeServe'
   import HomeShow from './childcomps/HomeShow'
-  import HomeTabBar from './childcomps/HomeTabBar'
 
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
   import FeatureViews from 'components/content/featureviews/FeatureViews'
   import FastInto from 'components/content/fastinto/FastInto'
 
@@ -24,7 +24,7 @@
   export default {
     name: "Home",
     components: {
-      HomeTabBar,
+      MainTabBar,
       HomeSwiper,
       FeatureViews,
       HomeServe,
@@ -41,8 +41,17 @@
           "https://fimg.zuchecdn.com/upload/web/HomePage/HeadFigure/2018/2560-500-mian2-20180824-WEB.jpg"
         ],
         serveImage: "https://image.zuchecdn.com/newversion/news/common/index_icon.png",
-        
       }
+    },
+    created() {
+      
+    },
+    methods: {
+      // getList() {
+      //   this.$axios.get('/api/getlist',{}).then((response) => {
+      //     console.log(response);
+      //   })
+      // }
     },
   }
 </script>

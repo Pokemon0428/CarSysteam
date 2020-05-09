@@ -1,6 +1,6 @@
 <template>
   <div class="car-info">
-    <car-info-item v-for="(item, index) in car.xuefulan" :car-item="item" :key="index"></car-info-item>
+    <car-info-item v-for="(item, index) in car.data" :car-item="item" :key="index" ></car-info-item>
   </div>
 </template>
 

@@ -44,79 +44,16 @@
     data() {
       return {
         car: {
-          xuefulan: [{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },{
-            image: "https://fimg.zuchecdn.com/upload/web/modepic/848.jpg",
-            name: "雪佛兰新科鲁兹",
-            des: "三厢|1.5自动|乘坐5人",
-            price: "124"
-          },]
+
         }
       }
+    },
+    created() {
+      this.$axios.get('/api/carinfo',{}).then(response => {
+        console.log(response)
+        this.car = response
+        console.log(this.car)
+      })
     },
   }
 </script>

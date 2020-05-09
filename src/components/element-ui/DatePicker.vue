@@ -17,12 +17,16 @@
   export default {
     data() {
       return {
-        value1: ''
+        value1: '',
+        startTime: '',
+        endTime: ''
       }
     },
     methods: {
       getDate(val) {
-        
+        this.startTime = val[0]
+        this.endTime = val[1]
+        this.$emit('timeSelect',this.startTime,this.endTime)
       }
     },
   };

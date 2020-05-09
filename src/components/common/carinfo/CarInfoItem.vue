@@ -1,9 +1,9 @@
 <template>
   <div class="car-item">
-    <img :src="CarItem.image" alt="">
+    <img :src="CarItem.img" alt="">
     <div class="des">
-      <p>{{CarItem.name}}</p>
-      <p>{{CarItem.des}}</p>
+      <p>{{CarItem.brand}}</p>
+      <p>{{CarItem.type + '|' +CarItem.power + '|' + CarItem.seat + '座' }}</p>
     </div>
     <div class="price">
       <span>
@@ -12,11 +12,14 @@
         <em>/日均</em>
       </span>
     </div>
-    <div class="rent">租车</div>
+    <div class="rent" @click='rent'>租车</div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import { mapActions } from 'vuex'
+
   export default {
     name: "CarInfoItem",
     props: {
@@ -26,7 +29,27 @@
           return {}
         }
       }
-    }
+    },
+    methods: {
+      ...mapActions(['addCarId']),
+      rent() {
+        if (this.normal || this.manager) {
+          this.$bus.$emit('rentCar', 'true')
+          this.addCarId(this.CarItem.carid).then(res => {
+
+          })
+        } else {
+          this.$toast.show("您还未登陆")
+        }
+      },
+
+    },
+    computed: {
+      ...mapGetters({
+        normal: 'changeNormal',
+        manager: 'changeManager'
+      })
+    },
   }
 </script>
 

@@ -1,17 +1,17 @@
 <template>
   <div id="long">
-    <long-tab-bar></long-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <P>长租</P>
   </div>
 </template>
 
 <script>
-  import LongTabBar from './childcomps/LongTabBar'
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
 
   export default {
     name: "Long",
     components: {
-      LongTabBar,
+      MainTabBar,
     }
   }
 </script>

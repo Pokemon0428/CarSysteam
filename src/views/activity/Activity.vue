@@ -1,18 +1,18 @@
 <template>
   <div id="activity">
-    <active-tab-bar></active-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <activity-list></activity-list>
   </div>
 </template>
 
 <script>
-  import ActiveTabBar from './childcomps/ActiveTabBar'
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
   import ActivityList from './childcomps/ActivityList'
 
   export default {
     name: "Activity",
     components: {
-      ActiveTabBar,
+      MainTabBar,
       ActivityList
     }
   }

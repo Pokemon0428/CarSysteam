@@ -11,7 +11,9 @@
                 <span class="icon-name"></span>
               </label>
               <input type="text" 
+                     v-model="name"
                      class="user-name" 
+                     @input='nameChange'
                      id="user-name" 
                      placeholder="请输入您的真实姓名" 
                      autocomplete="off">
@@ -23,7 +25,8 @@
               </label>
               <input type="text" 
                      class="user-phone" 
-                     id="user-phone" 
+                     id="user-phone"
+                     v-model="phoneNum" 
                      placeholder="请输入您的手机号" 
                      @input="phoneChange"
                      autocomplete="off"
@@ -54,7 +57,8 @@
               </label>
               <input type="password" 
                      class="user-password" 
-                     id="user-password" 
+                     id="user-password"
+                     v-model="psword" 
                      placeholder="建议6-18位数字、字母、._%的组合"
                      @input="passwordChange"
                      autocomplete="off">
@@ -68,6 +72,7 @@
               <input type="password" 
                      class="user-check-password" 
                      id="user-check-password" 
+                     v-model="psCheck" 
                      placeholder="请重新确认密码"
                      @input="passwordCheck"
                      autocomplete="off">
@@ -88,6 +93,8 @@
 <script>
   import Warning from "components/common/warning/Warning"
 
+  import { mapGetters } from 'vuex'
+
   export default {
     name: "RegContent",
     components: {
@@ -95,17 +102,26 @@
     },
     data() {
       return {
-        phoneNum: 0,
-        codeMsg: 0,
-        psword: 0,
-        psCheck: 0,
+        name: '',
+        phoneNum: '',
+        codeMsg: '',
+        psword: '',
+        psCheck: '',
         isShowPhone: false,
         isShowCode: false,
         isShowPsw: false,
         isShowPswCheck: false
       }
     },
+    computed: {
+      ...mapGetters({
+        userInfo: 'user'
+      })
+    },
     methods: {
+      nameChange() {
+        // console.log(this.name)
+      },
       phoneChange() {
         this.phoneNum = document.querySelector('.user-phone').value;
         if (!(/^1[3456789]\d{9}$/).test(this.phoneNum)) {
@@ -139,16 +155,31 @@
         }
       },
       regClick() {
+        this.makeSure()
+        const user = [
+          this.userInfo[0].name,
+          this.userInfo[0].phone,
+          this.userInfo[0].psword
+        ]
+        console.log(user)
+        this.$axios.post('/api/adduser',[user]).then((response) => {
+          console.log(response);
+        })
+      },
+      makeSure() {
         let agree = document.querySelector(".agreebox");
         if (!agree.checked) {
           this.$toast.show("请阅读并同意《xxxx用户服务条款》内容")
-        }
-        this.makeSure()
-      },
-      makeSure() {
-        if (this.isShowPhone || this.isShowCode || this.isShowPsw || this.isShowPswCheck) {
+        } else if (this.isShowPhone || this.isShowCode || this.isShowPsw || this.isShowPswCheck) {
+          this.$toast.show("注册信息有误，请重新填写")
+        } else if (this.name == '' || this.phoneNum == '' || this.codeMsg == '' || this.psword == '' || this.psCheck == '') {
           this.$toast.show("注册信息有误，请重新填写")
         } else {
+          const product = {}
+          product.name = this.name;
+          product.phone =  this.phoneNum;
+          product.psword = this.psword
+          this.$emit('addUserInfo',product)
           this.$router.push('/home')
         }
       }

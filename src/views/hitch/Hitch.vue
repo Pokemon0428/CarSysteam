@@ -1,17 +1,17 @@
 <template>
   <div id="hitch">
-    <hitch-tab-bar></hitch-tab-bar>
+    <main-tab-bar></main-tab-bar>
     <P>顺风车</P>
   </div>
 </template>
 
 <script>
-  import HitchTabBar from './childcomps/HitchTabBar'
+  import MainTabBar from 'components/content/maintabbar/MainTabBar'
 
   export default {
     name: "Hitch",
     components: {
-      HitchTabBar,
+      MainTabBar,
     }
   }
 </script>

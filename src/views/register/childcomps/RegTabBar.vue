@@ -43,7 +43,7 @@
   import TabBarItem from 'components/common/tabbar/TabBarItem.vue'
 
   export default {
-    name: "loginTabBar",
+    name: "RegTabBar",
     components: {
       TabBarLeft,
       TabBarRight,

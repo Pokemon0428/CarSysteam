@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <Login-tab-bar></Login-tab-bar>
-    <login-content></login-content>
+    <login-content @userLogin='userLogin' @managerLogin='managerLogin'></login-content>
     <feature-views></feature-views>
     <fast-into></fast-into>
   </div>
@@ -14,6 +14,8 @@
   import FeatureViews from 'components/content/featureviews/FeatureViews'
   import FastInto from 'components/content/fastinto/FastInto'
 
+  import { mapActions } from 'vuex'
+
   export default {
     name: "Login",
     components: {
@@ -21,11 +23,24 @@
       LoginContent,
       FastInto,
       FeatureViews
-    }
+    },
+    methods: {
+      ...mapActions(['changeManagerLogin','changeNormalLogin']),
+      userLogin(product) {
+        this.changeNormalLogin(product).then(res => {
+          this.$toast.show(res, 1500)
+        })
+      },
+      managerLogin(product) {
+        this.changeManagerLogin(product).then(res => {
+          this.$toast.show(res, 1500)
+        })
+      }
+    },
   }
 </script>
 
-<style scoped>
+<style scoped>3
   #login {
     height: 100vh;
     background-color: #f6fafb;

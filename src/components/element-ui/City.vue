@@ -97,6 +97,7 @@
     },
     methods: {
       f(e) {
+        this.$emit('citySelect',e.label)
         console.log(e.label)
       }
     },

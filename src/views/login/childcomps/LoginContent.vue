@@ -9,19 +9,27 @@
               <label for="normal-id">
                 <span class="icon-user"></span>
               </label>
-              <input type="text" class="user-name" id="normal-id" value="" placeholder="请输入手机号/证件号">
+              <input type="text" 
+                     class="user-name" 
+                     id="normal-id"  
+                     v-model='userPhone'
+                     placeholder="请输入手机号/证件号">
             </li>
             <li class="input-text">
               <label for="normal-password">
                 <span class="icon-password"></span>
               </label>
-              <input type="password" class="user-password" id="normal-password" value="" placeholder="请输入密码">
+              <input type="password" 
+                     class="user-password" 
+                     id="normal-password"  
+                     v-model='password'
+                     placeholder="请输入密码">
             </li>
           </ul>
           <div><a class="forget">忘记密码?</a></div>
           <ul class="sub">
             <li>
-              <input type="submit" value="登录" class="submit">
+              <input type="submit" value="登录" class="submit" @click="login">
             </li>
             <li>
               <div class="reg">
@@ -39,9 +47,56 @@
 <script>
   export default {
     name: "LoginContent",
+    data() {
+      return {
+        userPhone: '',
+        password: '',
+        userData: {},
+        managerData: {},
+        isSucss: false
+      }
+    },
+    created() {
+      this.getUserInfo()
+    },
     methods: {
       regClick() {
         this.$router.push('/register')
+      },
+      login() {
+        this.isSucss = false;
+        this.userData.data.forEach(item => {
+          if ((item.phone == this.userPhone) && (item.pw == this.password)) {
+            const product = {};
+            product.sqlUserPhone = item.phone;
+            product.sqlPassword = item.pw;
+            product.sqlUserName = item.username;
+            this.$emit('userLogin', product)
+            this.isSucss = true;
+          }
+        })
+        this.managerData.data.forEach(item => {
+          if ((item.code == this.userPhone) && (item.pw == this.password)) {
+            const product = {};
+            product.sqlUserName = '管理员';
+            this.$emit('managerLogin', product)
+            this.isSucss = true;
+          }
+        })
+        if (!this.isSucss) {
+          this.$toast.show('登陆失败，用户名或密码错误', 1500)
+        }
+        this.$router.push('/home')
+      },
+      getUserInfo() {
+        this.$axios.get('/api/userinfo',{}).then(response => {
+          // console.log(response)
+          this.userData = response
+        }),
+        this.$axios.get('/api/managerinfo',{}).then(response => {
+          // console.log(response)
+          this.managerData = response
+        })
       }
     },
   }

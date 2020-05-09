@@ -1,0 +1,7 @@
+export const ADD_USER_INFO = 'add_user_info'
+export const CHANGE_MANAGER_LOGIN = 'change_manager_login'
+export const CHANGE_NORMAL_LOGIN = 'change_normal_login'
+export const QUIT = 'quit'
+export const ADD_ORDER_ONE = 'add_order_one'
+export const ADD_ORDER_TWO = 'add_order_two'
+export const ADD_CAR_ID = 'add_car-id'
